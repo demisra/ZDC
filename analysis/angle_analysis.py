@@ -24,7 +24,7 @@ import pickle
 
 # %%
 particleType = 'neutron'
-config = 'zdc'
+config = 'ip6'
 count = '10e4'
 
 # %% [markdown]
@@ -88,15 +88,15 @@ def get_layerIDs(data, branch, events):
         if len(event_cellID) > 0:
             layerID.append(event_layerID)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            layerID.append(np.array([0]))
+            layerID.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            layerID.append(np.array([0]))
+            layerID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            layerID.append(np.array([0]))
+            layerID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            layerID.append(np.array([0]))
+            layerID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            layerID.append(np.array([0]))
+            layerID.append(np.array([]))
             
     return layerID
 
@@ -110,15 +110,15 @@ def get_eDep(data, branch, events):
         if len(event_hitsEnergy) > 0: 
             hitsEnergy.append(event_hitsEnergy)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            hitsEnergy.append(np.array([0]))
+            hitsEnergy.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            hitsEnergy.append(np.array([0]))
+            hitsEnergy.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            hitsEnergy.append(np.array([0]))
+            hitsEnergy.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            hitsEnergy.append(np.array([0]))
+            hitsEnergy.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            hitsEnergy.append(np.array([0]))
+            hitsEnergy.append(np.array([]))
 
     return hitsEnergy
 
@@ -133,15 +133,15 @@ def get_xIDs(data, branch, events):
         if len(event_cellID) > 0: 
             xID.append(event_xID)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
             
     return xID
 
@@ -160,15 +160,15 @@ def get_xIDs_WSi(data, branch, events):
         if len(event_cellID) > 0:
             xID.append(event_xID)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
             
     return xID
 
@@ -186,15 +186,15 @@ def get_xIDs_SiPix(data, branch, events):
         if len(event_cellID) > 0:
             xID.append(event_xID)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
+            xID.append(np.array([]))
             
     return xID
 
@@ -209,16 +209,16 @@ def get_yIDs(data, branch, events):
         if len(event_cellID) > 0:
             yID.append(event_yID)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
-            
+            yID.append(np.array([]))
+        
     return yID
 
 
@@ -236,15 +236,15 @@ def get_yIDs_WSi(data, branch, events):
         if len(event_cellID) > 0:
             yID.append(event_yID)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
 
     return yID
 
@@ -262,15 +262,15 @@ def get_yIDs_SiPix(data, branch, events):
         if len(event_cellID) > 0:
             yID.append(event_yID)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            yID.append(np.array([0]))
+            yID.append(np.array([]))
 
     return yID
 
@@ -300,25 +300,25 @@ def get_PbScint_features(data, branch, events):
             layerID.append(layerIDs_integrated)
             eDep.append(eDep_integrated)
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            layerID.append(np.array([0]))
-            eDep.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            layerID.append(np.array([]))
+            eDep.append(np.array([]))
         elif len(np.array(data["ZDCEcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            layerID.append(np.array([0]))
-            eDep.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            layerID.append(np.array([]))
+            eDep.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            layerID.append(np.array([0]))
-            eDep.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            layerID.append(np.array([]))
+            eDep.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            layerID.append(np.array([0]))
-            eDep.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            layerID.append(np.array([]))
+            eDep.append(np.array([]))
 
     return xID, yID, layerID, eDep
 
@@ -347,25 +347,25 @@ def get_crystal_features(data, branch, events):
             eDep.append(eDep_integrated)
             layerID.append(np.zeros(len(eDep_integrated)))
         elif len(np.array(data["ZDC_SiliconPix_Hits.cellID"][i])) > 0:
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            eDep.append(np.array([0]))
-            layerID.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            eDep.append(np.array([]))
+            layerID.append(np.array([]))
         elif len(np.array(data["ZDC_WSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            eDep.append(np.array([0]))
-            layerID.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            eDep.append(np.array([]))
+            layerID.append(np.array([]))
         elif len(np.array(data["ZDC_PbSi_Hits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            eDep.append(np.array([0]))
-            layerID.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            eDep.append(np.array([]))
+            layerID.append(np.array([]))
         elif len(np.array(data["ZDCHcalHits.cellID"][i])) > 0: 
-            xID.append(np.array([0]))
-            yID.append(np.array([0]))
-            eDep.append(np.array([0]))
-            layerID.append(np.array([0]))
+            xID.append(np.array([]))
+            yID.append(np.array([]))
+            eDep.append(np.array([]))
+            layerID.append(np.array([]))
 
     return xID, yID, layerID, eDep
 
@@ -445,62 +445,100 @@ for component in component_list:
     yIDs[f'{component}'] = ak.concatenate([yID_dict[f'{component}'][f'{angle}'] for angle in angle_list], axis=0)
     layerIDs[f'{component}'] = ak.concatenate([layerID_dict[f'{component}'][f'{angle}'] for angle in angle_list], axis=0)
 
+# %%
+xvals, yvals = dict(), dict()
+
+for key in xID_dict:
+    xvals[key] = np.concatenate([np.concatenate(xID_dict[key]['-4mrad']), np.concatenate(xID_dict[key]['00mrad']), np.concatenate(xID_dict[key]['04mrad'])])
+    yvals[key] = np.concatenate([np.concatenate(yID_dict[key]['-4mrad']), np.concatenate(yID_dict[key]['00mrad']), np.concatenate(yID_dict[key]['04mrad'])])
 
 # %%
-def get_labels(data, count):
-    angle_labels = []
-    angle_string_pos = len(f'{config}_{particleType}_')
-    labels = [float(list(samples.keys())[i][angle_string_pos:angle_string_pos + 2]) for i in range(len(samples.keys()))]
-    for i in range(len(labels)): 
-        angle_labels.append(np.full(len(list(eDep_dict['SiPix'].values())[i]), labels[i]))
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plt.hist2d(xvals['SiPix'], yvals['SiPix'], bins=[np.linspace(-30, 30, 60), np.linspace(-30, 30, 60)], norm='log', cmap=plt.cm.jet);
+plt.colorbar();
+plt.xlabel('x (cm)')
+plt.ylabel('y (cm)')
 
-    return angle_labels
+# %%
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plt.hist2d(xvals['WSi'], yvals['WSi'], bins=[np.linspace(-30, 30, 60), np.linspace(-30, 30, 60)], norm='log', cmap=plt.cm.jet);
+plt.colorbar();
+plt.xlabel('x (cm)')
+plt.ylabel('y (cm)')
+
+# %%
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plt.hist2d(xvals['PbSi'], yvals['PbSi'], bins=[np.linspace(-30, 30, 60), np.linspace(-30, 30, 60)], norm='log', cmap=plt.cm.jet);
+plt.colorbar();
+plt.xlabel('x (cm)')
+plt.ylabel('y (cm)')
+
+# %%
+SiPix_xvals, SiPix_yvals = dict(), dict()
+for angle in angle_list:
+    SiPix_xvals[angle] = np.concatenate(xID_dict['SiPix'][angle])
+    SiPix_yvals[angle] = np.concatenate(yID_dict['SiPix'][angle])
+
+# %%
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plots = dict()
+for angle in angle_list:
+    plt.figure()
+    plt.hist2d(SiPix_xvals[angle], SiPix_yvals[angle], bins=[np.linspace(-30, 30, 60), np.linspace(-30, 30, 60)], norm='log', cmap=plt.cm.jet);
+    plt.colorbar();
+    plt.xlabel('x (cm)');
+    plt.ylabel('y (cm)');
+plt.show()
+
+# %%
+WSi_xvals, WSi_yvals = dict(), dict()
+for angle in angle_list:
+    WSi_xvals[angle] = np.concatenate(xID_dict['WSi'][angle])
+    WSi_yvals[angle] = np.concatenate(yID_dict['WSi'][angle])
+
+# %%
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+plots = dict()
+for angle in angle_list:
+    plt.figure()
+    plt.hist2d(WSi_xvals[angle], WSi_yvals[angle], bins=[np.linspace(-30, 30, 60), np.linspace(-30, 30, 60)], norm='log', cmap=plt.cm.jet);
+    plt.colorbar();
+    plt.xlabel('x (cm)');
+    plt.ylabel('y (cm)');
+plt.show()
 
 
 # %%
-data_labels = np.concatenate(get_labels(samples, nevents))
+def get_l1_com(angle):
+    l1_com_list = []
+    for i in range(len(xID_dict['SiPix'][f'{angle}'])):
+        hit_coordinates = [xID_dict['SiPix'][f'{angle}'][i], yID_dict['SiPix'][f'{angle}'][i], layerID_dict['SiPix'][f'{angle}'][i]]
+        l1_com = np.average(hit_coordinates, weights=eDep_dict['SiPix'][f'{angle}'][i], axis=1)
+        l1_com_list.append(l1_com)
+    return l1_com_list
+
 
 # %%
-from sklearn.model_selection import train_test_split
-
-seed = 42
-
-hitEnergyDep_train = dict()
-hitEnergyDep_test = dict()
-xIDs_train = dict()
-xIDs_test = dict()
-yIDs_train = dict()
-yIDs_test = dict()
-layerIDs_train = dict()
-layerIDs_test = dict()
-labels_train = dict()
-labels_test = dict()
-
-labels_train, labels_test = train_test_split(data_labels, test_size=0.2, train_size=0.8, random_state = seed, shuffle=True)
-
-for key in hitEnergyDep:
-    hitEnergyDep_train[f'{key}'], hitEnergyDep_test[f'{key}'], xIDs_train[f'{key}'], xIDs_test[f'{key}'], yIDs_train[f'{key}'], yIDs_test[f'{key}'], layerIDs_train[f'{key}'], layerIDs_test[f'{key}'] = train_test_split(hitEnergyDep[f'{key}'], xIDs[f'{key}'], yIDs[f'{key}'], layerIDs[f'{key}'], test_size=0.2, train_size=0.8, random_state = seed, shuffle=True)
-
-# %%
-features_train = dict()
-features_test = dict()
-
-for key in hitEnergyDep:
-    features_train[f'{key}'] = [hitEnergyDep_train[f'{key}'], xIDs_train[f'{key}'], yIDs_train[f'{key}'], layerIDs_train[f'{key}']]
-    features_test[f'{key}'] = [hitEnergyDep_test[f'{key}'], xIDs_test[f'{key}'], yIDs_test[f'{key}'], layerIDs_test[f'{key}']]
-
-# %%
-processed_data_path = '/home/dmisra/eic/zdc/ml_reconstruction/data'
-
-# %%
-with open('/home/dmisra/eic/zdc/ml_reconstruction/data/features_train', 'wb') as handle:
-    pickle.dump(features_train, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-with open('/home/dmisra/eic/zdc/ml_reconstruction/data/features_test', 'wb') as handle:
-    pickle.dump(features_test, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-with open('/home/dmisra/eic/zdc/ml_reconstruction/data/labels_train', 'wb') as handle:
-    pickle.dump(labels_train, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-with open('/home/dmisra/eic/zdc/ml_reconstruction/data/labels_test', 'wb') as handle:
-    pickle.dump(labels_test, handle, protocol=pickle.HIGHEST_PROTOCOL)
+def get_last5_com(angle):
+    last5_com_list = []
+    for i in range(len(layerID_dict['PbScint'][f'{angle}'])):
+        lastLayer = max(layerID_dict['PbScint'][f'{angle}'][i])
+        last5 = [lastLayer, lastLayer-1, lastLayer-2, lastLayer-3, lastLayer-4]
+        last5_xIDs = []
+        last5_yIDs = []
+        last5_layerIDs = []
+        last5_eDep = []
+        for j in range(len(layerID_dict['PbScint'][f'{angle}'][i])):
+            if layerID_dict['PbScint'][f'{angle}'][i][j] in last5:
+                last5_xIDs.append(xID_dict['PbScint'][f'{angle}'][i][j])
+                last5_yIDs.append(yID_dict['PbScint'][f'{angle}'][i][j])
+                last5_layerIDs.append(layerID_dict['PbScint'][f'{angle}'][i][j])
+                last5_eDep.append(eDep_dict['PbScint'][f'{angle}'][i][j])
+        last5_com = np.average([last5_xIDs, last5_yIDs, last5_layerIDs], weights=last5_eDep, axis=1)
+        last5_com_list.append(last5_com)
+    return

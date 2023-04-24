@@ -33,7 +33,7 @@ with open('/home/dmisra/eic/zdc/ml_reconstruction/data/labels_test', 'rb') as ha
     labels_test = pickle.load(handle)
 
 # %%
-config = 'ip6'
+config = 'zdc'
 particleType = 'neutron'
 
 # %% [markdown]
@@ -204,13 +204,13 @@ class Net(torch.nn.Module):
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = Net().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
-scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', threshold=1e-3, threshold_mode='rel', patience=10)
+scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', threshold=1e-3, threshold_mode='rel', patience=10, eps=1e-12)
 
 # %%
 model.train()
 losses_train = []
 
-for epoch in range(500):
+for epoch in range(401):
     
     loss_train_epoch = []
     
@@ -227,23 +227,12 @@ for epoch in range(500):
     loss_train_epoch = np.mean(loss_train_epoch)
     learning_rate_epoch = scheduler.optimizer.param_groups[0]['lr']
     losses_train.append(loss_train_epoch)
-    print(epoch, loss_train_epoch, learning_rate_epoch)
+    print(f'Epoch: {epoch} | Loss: {loss_train_epoch} | Learning Rate: {learning_rate_epoch}')
 
     scheduler.step(loss_train_epoch)
     
-
     if epoch % 100 == 0:
-        torch.save(obj=model.state_dict(), f=f"/home/dmisra/eic/zdc/ml_reconstruction/gnn/angles/{config}_{particleType}_state_dict_{epoch}")
-
-        #Set the model in evaluation mode
-    model.eval()
-
-    #Setup the inference mode context manager
-    with torch.inference_mode():
-        y_preds_batched=[]
-        for batch in test_loader:
-            y_preds_batched.extend(model(batch.cuda()))
-        y_preds = torch.tensor([y.cpu() for y in y_preds_batched]).numpy()
+        torch.save(obj=model.state_dict(), f=f"/home/dmisra/eic/zdc/ml_reconstruction/gnn/angles/{config}_{particleType}_angle_state_dict_{epoch}")
 
 # %%
 plt.plot(losses_train, label="training")
@@ -252,7 +241,7 @@ plt.xlabel("epoch")
 plt.semilogy()
 
 # %%
-#model.load_state_dict(torch.load('/home/dmisra/eic/zdc/ml_reconstruction/gnn/angles/ip6_neutron_angle_state_dict'))
+model.load_state_dict(torch.load(f'/home/dmisra/eic/zdc/ml_reconstruction/gnn/angles/{config}_{particleType}_angle_state_dict_500'))
 
 # %% [markdown]
 # Predictions
@@ -293,16 +282,19 @@ x =(x[1:]+x[:-1])/2
 def gauss(x, mu, sigma, A):
     return A*np.exp(-(x-mu)**2/2/sigma**2)
 
-def biimodal(x, mu1, sigma1, A1, mu2, sigma2, A2):
+def bimodal(x, mu1, sigma1, A1, mu2, sigma2, A2):
     return gauss(x,mu1,sigma1,A1)+gauss(x,mu2,sigma2,A2)
 
 def trimodal(x, mu1, sigma1, A1, mu2, sigma2, A2, mu3, sigma3, A3):
     return gauss(x,mu1,sigma1,A1)+gauss(x,mu2,sigma2,A2)+gauss(x,mu3,sigma3,A3)
 
+def pentamodal(x, mu1, sigma1, A1, mu2, sigma2, A2, mu3, sigma3, A3, mu4, sigma4, A4, mu5, sigma5, A5):
+    return gauss(x,mu1,sigma1,A1)+gauss(x,mu2,sigma2,A2)+gauss(x,mu3,sigma3,A3)+gauss(x,mu4,sigma4,A4)+gauss(x,mu5,sigma5,A5)
+
 
 # %%
 expected_bi = (0, .1, 500, 4, .1, 500)
-expected_tri = (0, .1, 200, 2, .1, 200, 4, .1, 200)
+expected_tri = (-4, .1, 200, 0, .1, 200, 4, .1, 200)
 params, cov = curve_fit(trimodal, x, y, expected_tri)
 sigma = np.sqrt(np.diag(cov))
 x_fit = np.linspace(x.min(), x.max(), 500)
@@ -311,28 +303,29 @@ plt.plot(x_fit, trimodal(x_fit, *params), color='red', lw=1, label='model');
 # %%
 plt.plot(x_fit, gauss(x_fit, *params[:3]), color='red', lw=1, ls="--", label='distribution 1');
 plt.plot(x_fit, gauss(x_fit, *params[3:6]), color='red', lw=1, ls=":", label='distribution 2');
-plt.plot(x_fit, gauss(x_fit, *params[6:]), color='red', lw=1, ls="-", label='distribution 3');
+plt.plot(x_fit, gauss(x_fit, *params[6:9]), color='red', lw=1, ls="-", label='distribution 3');
 plt.hist(y_preds, 100, histtype='step', label='data');
 plt.xlabel('Angle (mrad)')
 plt.ylabel('Count')
 plt.title('Predicted Angle Distribution')
+plt.savefig(fname=f'{config}_{particleType}_angle_fit.pdf', format='pdf')
 
 # %%
 print(params[:3])
-print(params[3:])
+print(params[3:6])
+print(params[6:9])
 
 # %%
-peak_preds = [params[0], params[3]]
-true_peaks = [0., 4.]
-peak_preds
+peaks_mean = [params[0], params[3], params[6]]
+peaks_std_dev = [sigma[0], sigma[3], sigma[6]]
+true_peaks = [-4., 0., 4.]
+print(list(zip(peaks_mean, peaks_std_dev)))
 
 # %%
-print(sigma[0])
-print(sigma[3])
-
-# %%
-plt.scatter(true_peaks,peak_preds)
+plt.scatter(true_peaks,peaks_mean)
 plt.xlabel('Particle Angle (mrad)')
 plt.ylabel('Reconstructed Angle (mrad)')
-plt.plot(np.arange(0,5),np.arange(0,5))
+plt.plot(np.arange(-5,5),np.arange(-5,5))
 plt.title('Linearity')
+
+# %%
